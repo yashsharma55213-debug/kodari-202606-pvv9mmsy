@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BETTERYASH Hub</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">
+        <div class="profile-badge">BY</div>
+        <div class="header-text">
+          <h1>BETTERYASH</h1>
+          <p class="subtitle">Official Creator Hub</p>
+        </div>
+      </div>
+      <button class="admin-btn" id="adminToggle" title="Admin Panel">⚙️</button>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs">
+      <button class="tab-btn active" data-tab="home">🏠 Home</button>
+      <button class="tab-btn" data-tab="downloads">📦 Downloads</button>
+      <button class="tab-btn" data-tab="announcements">📢 News</button>
+      <button class="tab-btn" data-tab="community">💬 Community</button>
+    </nav>
+
+    <!-- Tab Content -->
+    <div class="tab-content">
+      
+      <!-- HOME TAB -->
+      <div class="tab-pane active" id="home">
+        <div class="welcome-banner">
+          <h2>Welcome to BETTERYASH Official Hub!</h2>
+          <p>Download my Minecraft packs, stay updated with announcements, and join the community.</p>
+        </div>
+
+        <div class="youtube-section">
+          <h3>📺 YouTube Channel</h3>
+          <a href="https://youtube.com/@BETTERYASH" target="_blank" class="pixel-btn youtube-btn">
+            Visit Channel
+          </a>
+          <div class="stats">
+            <div class="stat-item">
+              <span class="stat-label">Total Downloads</span>
+              <span class="stat-value" id="totalDownloads">0</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="quick-links">
+          <h3>⚡ Quick Access</h3>
+          <button class="pixel-btn" data-nav="downloads">Browse Downloads</button>
+          <button class="pixel-btn" data-nav="announcements">Latest News</button>
+        </div>
+      </div>
+
+      <!-- DOWNLOADS TAB -->
+      <div class="tab-pane" id="downloads">
+        <div class="download-categories">
+          <button class="category-btn active" data-category="texture">🎨 Texture Packs</button>
+          <button class="category-btn" data-category="mods">⚙️ Mod Packs</button>
+          <button class="category-btn" data-category="controls">🎮 Controls</button>
+        </div>
+
+        <div class="search-bar">
+          <input type="text" id="searchInput" placeholder="Search downloads...">
+        </div>
+
+        <div class="downloads-list" id="downloadsList">
+          <div class="empty-state">
+            <p>No downloads available yet.</p>
+            <p class="empty-hint">Check back soon for new releases! 🚀</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ANNOUNCEMENTS TAB -->
+      <div class="tab-pane" id="announcements">
+        <h2>📢 Latest Announcements</h2>
+        <div class="announcements-list" id="announcementsList">
+          <div class="empty-state">
+            <p>No announcements yet.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- COMMUNITY TAB -->
+      <div class="tab-pane" id="community">
+        <h2>💬 Community</h2>
+        <div class="community-info">
+          <p><strong>Join the BETTERYASH Community!</strong></p>
+          <p>Connect with other fans and stay updated:</p>
+          <div class="social-links">
+            <a href="https://youtube.com/@BETTERYASH" target="_blank" class="pixel-btn">YouTube</a>
+            <button class="pixel-btn" id="discordBtn">Discord (Coming Soon)</button>
+          </div>
+          <div class="user-profile">
+            <h3>Your Profile</h3>
+            <div class="profile-stat">
+              <span>Downloads:</span>
+              <span id="userDownloads">0</span>
+            </div>
+            <div class="profile-stat">
+              <span>Favorites:</span>
+              <span id="userFavorites">0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>&copy; 2024 BETTERYASH. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <!-- Admin Panel Modal -->
+  <div class="modal" id="adminModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>🔐 Admin Panel</h2>
+        <button class="close-btn" id="closeAdmin">&times;</button>
+      </div>
+      <div class="modal-body" id="adminBody">
+        <!-- Login View -->
+        <div id="adminLogin">
+          <input type="password" id="adminPassword" placeholder="Enter admin password">
+          <button class="pixel-btn" id="adminLoginBtn">Login</button>
+          <p class="admin-hint">Default password: betteryash123</p>
+        </div>
+
+        <!-- Admin Dashboard -->
+        <div id="adminDashboard" style="display: none;">
+          <div class="admin-tabs">
+            <button class="admin-tab-btn active" data-admin-tab="uploads">Upload Content</button>
+            <button class="admin-tab-btn" data-admin-tab="announce">Create Announcement</button>
+            <button class="admin-tab-btn" data-admin-tab="settings">Settings</button>
+          </div>
+
+          <!-- Upload Content -->
+          <div class="admin-tab-pane active" id="uploads">
+            <h3>Upload New Download</h3>
+            <select id="uploadType">
+              <option value="texture">Texture Pack</option>
+              <option value="mods">Mod Pack</option>
+              <option value="controls">Controls</option>
+            </select>
+            <input type="text" id="uploadName" placeholder="Name (e.g., BETTERYASH PVP Pack)">
+            <input type="text" id="uploadVersion" placeholder="Minecraft Version (e.g., 1.20.1)">
+            <input type="text" id="uploadSize" placeholder="File Size (e.g., 15 MB)">
+            <textarea id="uploadDesc" placeholder="Description..." rows="3"></textarea>
+            <input type="text" id="uploadLink" placeholder="Download Link (Google Drive, MediaFire, etc.)">
+            <button class="pixel-btn" id="uploadBtn">Add Download</button>
+          </div>
+
+          <!-- Create Announcement -->
+          <div class="admin-tab-pane" id="announce">
+            <h3>Create Announcement</h3>
+            <input type="text" id="announceTitle" placeholder="Announcement Title">
+            <textarea id="announceText" placeholder="Announcement message..." rows="4"></textarea>
+            <button class="pixel-btn" id="announceBtn">Post Announcement</button>
+          </div>
+
+          <!-- Settings -->
+          <div class="admin-tab-pane" id="settings">
+            <h3>Admin Settings</h3>
+            <label>Change Password:</label>
+            <input type="password" id="newPassword" placeholder="New password">
+            <button class="pixel-btn" id="changePasswordBtn">Change Password</button>
+            <hr>
+            <button class="pixel-btn danger" id="clearDataBtn">Clear All Data</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

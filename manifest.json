@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "BETTERYASH Official Hub",
+  "version": "1.0.0",
+  "description": "Official BETTERYASH creator hub - Download Minecraft packs, view announcements, and connect with the community!",
+  "permissions": ["storage", "notifications"],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "_libraries": []
+}
